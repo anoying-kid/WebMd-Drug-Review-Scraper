@@ -87,9 +87,3 @@ if __name__ == '__main__':
     url = "https://www.webmd.com/drugs/drugreview-64439-abilify"
     reviews = 1837
     getting_all_reviews(url, reviews, headers)
-    # with open('links.csv','r') as rf:
-    #     with open('webmd.csv', 'a') as wf:
-    #         csv_reader = DictReader(rf)
-    #         csv_writer = DictWriter(wf, fieldnames=['links','reviews'])
-    #         for row in csv_reader:
-    #             getting_all_reviews(row['links'], int(row['reviews']), headers)
