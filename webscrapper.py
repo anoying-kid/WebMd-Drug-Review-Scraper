@@ -7,8 +7,8 @@ import re
 
 class WebmdScraper():
     url = "https://www.webmd.com/drugs/2/alpha/"
-    # loc = [f'{s}/{s}{t}' for s in string.ascii_lowercase for t in string.ascii_lowercase ]
-    loc = ['a/aa','a/ab','b/ba','b/bb']
+    loc = [f'{s}/{s}{t}' for s in string.ascii_lowercase for t in string.ascii_lowercase ]
+    # loc = ['a/aa','a/ab','b/ba','b/bb']
     headers= {"User-Agent" : "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.1 Safari/605.1.15"}
 
     def request_data(self):
@@ -17,8 +17,6 @@ class WebmdScraper():
             with requests.session() as s:
                 r = s.get(new_link, headers=self.headers)
                 yield r.text
-                # with open('r.html', 'w') as w:
-                #     w.write(r.text)
     
     def get_links(self):
         for r in self.request_data():
@@ -62,23 +60,8 @@ class WebmdScraper():
                     csv_writer = DictWriter(f, fieldnames=head)
                     if f.tell() == 0:
                         csv_writer.writeheader()
-                # yield (link[:-5], int(reviews), self.headers)
                 getting_all_reviews(link[:-5], int(reviews), self.headers)
-
-    # def saving_links_to_csv(self):
-    #     for link,reviews in self.getting_review_links():
-    #         if link:
-    #             with open('links.csv','a') as f:
-    #                 head = ['links','reviews']
-    #                 csv_writer = DictWriter(f,fieldnames=head)
-    #                 if f.tell() == 0:
-    #                     csv_writer.writeheader()
-    #                 csv_writer.writerow({
-    #                     'links':link[:-5],
-    #                     'reviews':reviews
-    #                 })
 
 if __name__ == '__main__':
     webmd = WebmdScraper()
-    # webmd.saving_links_to_csv()
     webmd.extracting_review_from_page()
