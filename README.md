@@ -73,4 +73,6 @@ Give food to my cat 🐈‍⬛:
 ```
 
 **NOTE** : My cat is hungry.
+
+[LICENSE](LICENSE)
 </samp>
